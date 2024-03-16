@@ -1,32 +1,31 @@
-# Projekt Badawczy cz. I: <br> Zastosowanie modelu SparseConvMIL do danych Bisque Breast Cancer
+# Research Project Part I: <br> Application of SparseConvMIL Model to Bisque Breast Cancer Data
 
-## Opis Projektu
-W ramach tego projektu badawczego zostanie zastosowany model SparseConvMIL do analizy danych związanych z rakiem piersi ze zbioru danych Bisque Breast Cancer. Model oraz informacje o jego implementacji można znaleźć na stronie [GitHub projektu SparseConvMIL](https://github.com/MarvinLer/SparseConvMIL). Pełen opis działania modelu znajduje się w artykule naukowym [Sparse Convolutional Multiple Instance Learning for Whole Slide Breast Cancer Histology Image Classification](https://proceedings.mlr.press/v156/lerousseau21a/lerousseau21a.pdf).
+## Project Description
+This research project aims to apply the SparseConvMIL model to analyze breast cancer data from the Bisque Breast Cancer dataset. The model and information about its implementation can be found on the [GitHub page of the SparseConvMIL project](https://github.com/MarvinLer/SparseConvMIL). A detailed description of the model's stucture is provided in the article ["Sparse Convolutional Multiple Instance Learning for Whole Slide Breast Cancer Histology Image Classification"](https://proceedings.mlr.press/v156/lerousseau21a/lerousseau21a.pdf).
 
-### Zbiór Danych
-Zbiór danych Bisque Breast Cancer zawiera dane dotyczące segmentacji komórek nowotworowych związanych z rakiem piersi. Zbiór ten został opublikowany na platformie Kaggle: [Breast Cancer Cell Segmentation](https://www.kaggle.com/datasets/andrewmvd/breast-cancer-cell-segmentation/data). Oryginalne dane pochodzą z artykułu ["Evaluation and benchmark for biological image segmentation"](https://vision.ece.ucsb.edu/sites/default/files/publications/elisa_ICIP08.pdf)
+### Dataset
+The Bisque Breast Cancer dataset contains data related to the segmentation of breast cancer cells. This dataset was published on Kaggle: [Breast Cancer Cell Segmentation](https://www.kaggle.com/datasets/andrewmvd/breast-cancer-cell-segmentation/data). The original data is from the article ["Evaluation and benchmark for biological image segmentation"](https://vision.ece.ucsb.edu/sites/default/files/publications/elisa_ICIP08.pdf).
 
 [Citation: E. Drelie Gelasca, J. Byun, B. Obara and B. S. Manjunath, "Evaluation and benchmark for biological image segmentation," 2008 15th IEEE International Conference on Image Processing, San Diego, CA, 2008, pp. 1816-1819.]
 
-## Harmonogram i Podział Pracy
-### KM0:  (28.03)
-1. **Stworzenie Repozytorium i Organizacja Pracy**: Utworzenie repozytorium projektu na platformie GitHub, przydzielenie zadań i odpowiedzialności dla członków zespołu.
-2. **Analiza Danych**: Przegląd zbioru danych Bisque Breast Cancer, zrozumienie formatu danych i (wstępnie) struktury algorymu SparseConvMIL.
-3. **Przygotowanie Prezentacji**: Opracowanie wstępnej prezentacji, która będzie opowiadać o uzyskanych informacjach i wynikach analizy danych.
+## Schedule and Work Organization
+### MS 0:  (March 28)
+1. **Repository Creation and Work Organization**: Creating a project repository on GitHub, assigning tasks, and responsibilities to team members.
+2. **Data Analysis**: Review of the Bisque Breast Cancer dataset, understanding the data format, and (preliminarily) the structure of the SparseConvMIL algorithm.
+3. **Preparation of Presentation**: Preparation of an initial presentation to discuss the obtained information and results of data analysis (5-10min).
 
-### KM1:
-1. **Analiza Modelu**: Dokładne zapoznanie się ze strukturą i metodą działania modelu SparseConvMIL.
-2. **Przygotowanie Danych**: Przetworzenie danych w odpowiedni format do zastosowania modelu.
-3. **Implementacja Modelu**: Implementacja modelu SparseConvMIL zgodnie z dokumentacją i wskazówkami dostępnymi na GitHub.
-4. **Trenowanie Modelu**: Trenowanie modelu na zbiorze danych Bisque Breast Cancer.
-5. **Ocena Modelu**: Ocena wydajności modelu na zbiorze testowym oraz analiza wyników.
-6. **Dokumentacja i Przygotowanie Raportu**: Opracowanie raportu z wynikami projektu, w tym dokumentacji technicznej i interpretacji wyników.
+### MS 1:
+1. **Model Analysis**: Thorough familiarization with the structure and operation of the SparseConvMIL model.
+2. **Data Preparation**: Processing the data into an appropriate format for model application.
+3. **Model Implementation**: Implementation of the SparseConvMIL model according to the documentation and guidelines available on GitHub.
+4. **Model Training**: Training the model on the Bisque Breast Cancer dataset.
+5. **Model Evaluation**: Assessing the model's performance on the test dataset and analyzing the results.
+6. **Documentation and Report Preparation**: Compiling a report with the project results, including technical documentation and interpretation of findings.
 
-Część druga projektu na razie pozostaje bez opisu i będzie uzupełniona w późniejszej fazie projektu.
+The second part of the project remains without description for now and will be completed in a later phase of the project.
 
-## Autorki:
-
+## Authors:
 [Magdalena Jeczeń](https://github.com/m24jeczen)  
 [Aleksandra Kulczycka](https://github.com/akulczycka)  
 [Karolina Dunal](https://github.com/xxkaro)  
-[Zofia Kamińska](https://github.com/kaminskaz)  
+[Zofia Kamińska](https://github.com/kaminskaz)
