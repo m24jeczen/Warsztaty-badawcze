@@ -15,12 +15,11 @@ The Bisque Breast Cancer dataset contains data related to the segmentation of br
 3. **Preparation of Presentation**: Preparation of an initial presentation to discuss the obtained information and results of data analysis (5-10min).
 
 ### MS 1:
-1. **Model Analysis**: Thorough familiarization with the structure and operation of the SparseConvMIL model.
-2. **Data Preparation**: Processing the data into an appropriate format for model application.
-3. **Model Implementation**: Implementation of the SparseConvMIL model according to the documentation and guidelines available on GitHub.
-4. **Model Training**: Training the model on the Bisque Breast Cancer dataset.
-5. **Model Evaluation**: Assessing the model's performance on the test dataset and analyzing the results.
-6. **Documentation and Report Preparation**: Compiling a report with the project results, including technical documentation and interpretation of findings.
+1. **Model Analysis**: Thorough familiarization with the structure and operation of the SparseConvMIL model. (Ola & Madzia)
+2. **Data Preparation**: Processing the data into an appropriate format for model application. (Zosia & Karolina)
+3. **Model Implementation**: Implementation of the SparseConvMIL model according to the documentation and guidelines available on GitHub. (Karolina & Zosia)
+4. **Model Training & Evaluation**: Training the model on the Bisque Breast Cancer dataset and assessing the model's performance on the test dataset. 
+6. **Documentation and Report Preparation**: Analyzing the results, compiling a report with the project results, including technical documentation and interpretation of findings.
 
 The second part of the project remains without description for now and will be completed in a later phase of the project.
 
