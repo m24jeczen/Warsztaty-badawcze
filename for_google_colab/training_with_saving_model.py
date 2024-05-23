@@ -34,7 +34,7 @@ def _define_args():
                         metavar='PATH',
                         help='path of CSV-file containing slide labels')
 
-    parser.add_argument('--epochs', type=int, default=100, metavar='N', help='number of training epochs')
+    parser.add_argument('--epochs', type=int, default=5, metavar='N', help='number of training epochs')
     parser.add_argument('--lr', type=float, default=2e-3, metavar='LR', help='learning rate')
     parser.add_argument('--reg', type=float, default=1e-6, metavar='R', help='weight decay')
 
@@ -170,7 +170,6 @@ def testing(mil_model, dataloader, loss_function):
         loss.backward()
         #optimizer.step()
 
-        # Store data for finale epoch average measures
         losses.append(loss.detach().cpu().numpy())
         proba_predictions.extend(predictions.detach().cpu().numpy())
         ground_truths.extend(slides_labels.numpy())
@@ -245,13 +244,13 @@ def main(hyper_parameters):
 
     # Loop through all epochs
     print('Starting training...')
-    for epoch in range(start_epoch,hyper_parameters["epochs"]):
+    for epoch in range(start_epoch,hyper_parameters["epochs"]+start_epoch):
         loss, bac, ground_truths, predicted_classes = perform_epoch(sparseconvmil_model, dataloader_train, optimizer, loss_function)
         if bac == 1:
             bac_1_counter += 1
 
         epoch_data.append([epoch + 1, loss, bac])
-        print('Epoch', f'{epoch:3d}/{hyper_parameters["epochs"]}', f'    loss={loss:.3f}', f'    bac={bac:.3f}')
+        print('Epoch', f'{epoch:3d}/{hyper_parameters["epochs"] +start_epoch}', f'    loss={loss:.3f}', f'    bac={bac:.3f}')
         if bac_1_counter == 3:
             break
 
