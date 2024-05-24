@@ -15,13 +15,23 @@ The Bisque Breast Cancer dataset contains data related to the segmentation of br
 3. **Preparation of Presentation**: Preparation of an initial presentation to discuss the obtained information and results of data analysis (5-10min).
 
 ### MS 1:
-1. **Model Analysis**: Thorough familiarization with the structure and operation of the SparseConvMIL model. (Ola & Madzia)
+1. **Model Analysis**: Thorough familiarization with the structure and operation of the SparseConvMIL model. (All)
 2. **Data Preparation**: Processing the data into an appropriate format for model application. (Zosia & Karolina)
-3. **Model Implementation**: Implementation of the SparseConvMIL model according to the documentation and guidelines available on GitHub. (Karolina & Zosia)
-4. **Model Training & Evaluation**: Training the model on the Bisque Breast Cancer dataset and assessing the model's performance on the test dataset. 
-6. **Documentation and Report Preparation**: Analyzing the results, compiling a report with the project results, including technical documentation and interpretation of findings.
+3. **Model Implementation**: Implementation of the SparseConvMIL model according to the documentation and guidelines available on GitHub. (Magda)
+4. **Model Training & Evaluation**: Training the model on the Bisque Breast Cancer dataset and assessing the model's performance on the test dataset. (All)
+6. **Documentation and Report Preparation**: Analyzing the results, compiling a report with the project results, including technical documentation and interpretation of findings. (All)
 
 The second part of the project remains without description for now and will be completed in a later phase of the project.
+
+[UPDATE]
+### MS 2:
+In the next part of the project, we focus on developing strategies to improve the effectiveness of the model. We will base our research on 3 hypotheses:  
+1. Areas marked with a mask facilitate the model in classifying histopathological images. (Karolina & Zosia)  
+2. Areas containing background hinder the model in classifying histopathological images. (Zosia & Karolina)  
+3. **Curriculum Learning**: Improves the efficiency/results of the model. (Magda & Ola)
+
+   
+    Three variants will be tested, dividing into difficulty levels based on **masks** and **background** (depending on the earlier findings) and a **classical approach** based on the confidence of a pretrained model.
 
 ## Authors:
 [Magdalena Jeczeń](https://github.com/m24jeczen)  
