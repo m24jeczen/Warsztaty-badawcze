@@ -116,12 +116,21 @@ class Dataset(torch.utils.data.dataset.Dataset):
         slides_ids = list(map(lambda cell: cell[0], cells))
         slides_labels = list(map(lambda cell: cell[1], cells))
 
-        # Converts labels to digits
+        
+        # Define the explicit mapping for the labels
+        label_to_digit = {'benign': 0, 'malignant': 1}
+        digit_to_label = {0: 'benign', 1: 'malignant'}
+
+        # Ensure all labels are either 'benign' or 'malignant'
         unique_labels = list(set(slides_labels))
-        assert len(unique_labels) > 1, f'Expected at least two labels, found {len(unique_labels)}'
-        label_to_digit = {label: digit for digit, label in enumerate(unique_labels)}
-        digit_to_label = {digit: label for digit, label in enumerate(unique_labels)}
+        assert len(unique_labels) == 2 and 'benign' in unique_labels and 'malignant' in unique_labels, \
+            f'Expected exactly two labels ("benign" and "malignant"), found: {unique_labels}'
+
         slides_labels = {slide_id: label_to_digit[label] for slide_id, label in zip(slides_ids, slides_labels)}
+
+        # Print the digit labels to verify correctness
+        #for slide_id, digit_label in slides_labels.items():
+        #    print(f"Slide ID: {slide_id}, Label: {digit_to_label[digit_label]}, Digit Label: {digit_label}")
 
         return slides_labels, digit_to_label
 
