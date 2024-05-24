@@ -258,6 +258,10 @@ def main(hyper_parameters):
         if bac == 1:
             bac_1_counter += 1
 
+        # Zapisywanie co 10 epok, jak nie chcecie to zakomentujcie
+        if (epoch + 1) % 10 == 0:
+            save_model(sparseconvmil_model, optimizer, epoch, hyper_parameters['save_model_path'])
+
         epoch_data.append([epoch + 1, loss, bac, recall])
         print('Epoch', f'{epoch:3d}/{hyper_parameters["epochs"] +start_epoch}', f'    loss={loss:.3f}', f'    bac={bac:.3f}', f'    recall={recall:.3f}')
         if bac_1_counter == 3:
