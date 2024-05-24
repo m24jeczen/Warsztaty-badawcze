@@ -251,32 +251,38 @@ def main(hyper_parameters):
 
     bac_1_counter = 0
 
-    # Loop through all epochs
-    print('Starting training...')
-    for epoch in range(start_epoch,hyper_parameters["epochs"]+start_epoch):
-        loss, bac, recall,ground_truths, predicted_classes = perform_epoch(sparseconvmil_model, dataloader_train, optimizer, loss_function)
-        if bac == 1:
-            bac_1_counter += 1
+    # tutaj dajcie false, jeżeli chcecie tylko przetestować zapisany model
+    training = True
 
-        # Zapisywanie co 10 epok, jak nie chcecie to zakomentujcie
-        if (epoch + 1) % 10 == 0:
-            save_model(sparseconvmil_model, optimizer, epoch, hyper_parameters['save_model_path'])
+    if (training):
+        print('Starting training...')
+        for epoch in range(start_epoch,hyper_parameters["epochs"]+start_epoch):
+            loss, bac, recall,ground_truths, predicted_classes = perform_epoch(sparseconvmil_model, dataloader_train, optimizer, loss_function)
+            if bac == 1:
+                bac_1_counter += 1
 
-        epoch_data.append([epoch + 1, loss, bac, recall])
-        print('Epoch', f'{epoch:3d}/{hyper_parameters["epochs"] +start_epoch}', f'    loss={loss:.3f}', f'    bac={bac:.3f}', f'    recall={recall:.3f}')
-        if bac_1_counter == 3:
-            break
+            # Zapisywanie co 10 epok, jak nie chcecie to zakomentujcie
+            if (epoch + 1) % 10 == 0:
+                save_model(sparseconvmil_model, optimizer, epoch, hyper_parameters['save_model_path'])
 
-        
-    save_model(sparseconvmil_model, optimizer, epoch, hyper_parameters['save_model_path'])
+            epoch_data.append([epoch + 1, loss, bac, recall])
+            print('Epoch', f'{epoch:3d}/{hyper_parameters["epochs"] +start_epoch}', f'    loss={loss:.3f}', f'    bac={bac:.3f}', f'    recall={recall:.3f}')
+            if bac_1_counter == 3:
+                break
 
-        
+        save_model(sparseconvmil_model, optimizer, epoch, hyper_parameters['save_model_path'])
 
-    print("Ground truths: ", ground_truths)
-    print("Predicted classes: ", predicted_classes)
+        print("Ground truths: ", ground_truths)
+        print("Predicted classes: ", predicted_classes)
     
 
     print('---training  done---')
+    # Loop through all epochs
+    
+
+        
+
+
     print('Checking on test data ')
     loss_test, bac_test, recall_test, ground_truths_test, predicted_classes_test = testing(sparseconvmil_model, dataloader_test, loss_function)
     print("Test results:", f'    loss={loss_test:.3f}', f'    bac={bac_test:.3f}', f'    recall={recall_test:.3f}')
