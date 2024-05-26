@@ -130,7 +130,7 @@ class SparseConvMIL(nn.Module):
         wsi_embedding = self.sparse_cnn(sparse_map)
         wsi_embedding = torch.flatten(wsi_embedding, start_dim=1)
 
-        print("X: ", x, "pred: ", self.wsi_embedding_classifier(wsi_embedding))
+        #print("X: ", x, "pred: ", self.wsi_embedding_classifier(wsi_embedding))
         return self.wsi_embedding_classifier(wsi_embedding)
 
 
