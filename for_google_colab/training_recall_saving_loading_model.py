@@ -24,19 +24,19 @@ def _define_args():
     parser = argparse.ArgumentParser(description='SparseConvMIL: Sparse Convolutional Context-Aware Multiple Instance '
                                                  'Learning for Whole Slide Image Classification')
     
-    parser.add_argument('--slide-parent-folder-train', type=str, default='Warsztaty-badawcze/Right_data/Selected_Train_5', metavar='PATH',
+    parser.add_argument('--slide-parent-folder-train', type=str, default='Warsztaty-badawcze/Data/Selected_5_Random/Train', metavar='PATH',
                         help='path of parent folder containing preprocessed slides data')
-    parser.add_argument('--slide-labels-filepath-train', type=str, default='Warsztaty-badawcze/Right_data/Selected_Train_5/labels.csv',
+    parser.add_argument('--slide-labels-filepath-train', type=str, default='Warsztaty-badawcze/Data/Selected_5_Random/Train/labels.csv',
                         metavar='PATH',
                         help='path of CSV-file containing slide labels')
     
-    parser.add_argument('--slide-parent-folder-test', type=str, default='Warsztaty-badawcze/Right_data/Selected_Test_5', metavar='PATH',
+    parser.add_argument('--slide-parent-folder-test', type=str, default='Warsztaty-badawcze/Data/Selected_5_NoBackground/Test', metavar='PATH',
                         help='path of parent folder containing preprocessed slides data')
-    parser.add_argument('--slide-labels-filepath-test', type=str, default='Warsztaty-badawcze/Right_data/Selected_Test_5/labels.csv',
+    parser.add_argument('--slide-labels-filepath-test', type=str, default='Warsztaty-badawcze/Data/Selected_5_NoBackground/Test/labels.csv',
                         metavar='PATH',
                         help='path of CSV-file containing slide labels')
 
-    parser.add_argument('--epochs', type=int, default=50, metavar='N', help='number of training epochs')
+    parser.add_argument('--epochs', type=int, default=150, metavar='N', help='number of training epochs')
     parser.add_argument('--lr', type=float, default=2e-3, metavar='LR', help='learning rate')
     parser.add_argument('--reg', type=float, default=1e-6, metavar='R', help='weight decay')
 
@@ -49,7 +49,7 @@ def _define_args():
                         help='number of channels of first convolution of the sparse-input CNN pooling')
     parser.add_argument('--sparse-conv-n-channels-conv2', type=int, default=32,
                         help='number of channels of first convolution of the sparse-input CNN pooling')
-    parser.add_argument('--sparse-map-downsample', type=int, default=10, help='downsampling factor of the sparse map')
+    parser.add_argument('--sparse-map-downsample', type=int, default=1, help='downsampling factor of the sparse map')
     parser.add_argument('--wsi-embedding-classifier-n-inner-neurons', type=int, default=32,
                         help='number of inner neurons for the WSI embedding classifier')
     
@@ -64,9 +64,9 @@ def _define_args():
 
 
         # Save and resume training
-    parser.add_argument('--save-model-path', type=str, default='Warsztaty-badawcze/sparseconvmil_model.pth',
+    parser.add_argument('--save-model-path', type=str, default='Warsztaty-badawcze/sparseconvmil_model_Random.pth',
                         help='Path to save the trained model')
-    parser.add_argument('--load-model-path', type=str, default='Warsztaty-badawcze/sparseconvmil_model.pth',
+    parser.add_argument('--load-model-path', type=str, default='Warsztaty-badawcze/sparseconvmil_model_Random.pth',
                         help='Path to load the pre-trained model for continuing training')
 
     args = parser.parse_args()
@@ -97,20 +97,21 @@ def _define_args():
 def get_dataloader(dataset, batch_size, shuffle, num_workers):
     return torch.utils.data.DataLoader(dataset, batch_size, shuffle, num_workers=num_workers)
 
-def make_confusion_matrix(ground_truths, predicted_classes, ground_truths_test, predicted_classes_test, n_classes = 2):
+def make_confusion_matrix(training, ground_truths, predicted_classes, ground_truths_test, predicted_classes_test, n_classes = 2):
     # Confusion matrix for train data
-    conf_matrix_train = confusion_matrix(ground_truths, predicted_classes)
+    if (training):
+      conf_matrix_train = confusion_matrix(ground_truths, predicted_classes)
 
     # Confusion matrix for test data
     conf_matrix_test = confusion_matrix(ground_truths_test, predicted_classes_test)
-
-    plt.figure(figsize=(8, 6))
-    sns.heatmap(conf_matrix_train, annot=True, fmt='d', cmap='Blues', xticklabels=range(n_classes), yticklabels=range(n_classes))
-    plt.xlabel('Predicted labels')
-    plt.ylabel('True labels')
-    plt.title('Confusion Matrix - Train Data')
-    plt.savefig('Warsztaty-badawcze/conf_matrixes/confusion_matrix_wczytywanie_modelu_train.png')  # Saving the confusion matrix for train data as an image
-    plt.close()  # Closing the plot to release memory
+    if (training):
+      plt.figure(figsize=(8, 6))
+      sns.heatmap(conf_matrix_train, annot=True, fmt='d', cmap='Blues', xticklabels=range(n_classes), yticklabels=range(n_classes))
+      plt.xlabel('Predicted labels')
+      plt.ylabel('True labels')
+      plt.title('Confusion Matrix - Train Data')
+      plt.savefig('Warsztaty-badawcze/conf_matrixes/confusion_matrix_random_train.png')  # Saving the confusion matrix for train data as an image
+      plt.close()  # Closing the plot to release memory
 
     # Plotting confusion matrix for test data
     plt.figure(figsize=(8, 6))
@@ -118,7 +119,7 @@ def make_confusion_matrix(ground_truths, predicted_classes, ground_truths_test, 
     plt.xlabel('Predicted labels')
     plt.ylabel('True labels')
     plt.title('Confusion Matrix - Test Data')
-    plt.savefig('Warsztaty-badawcze/conf_matrixes/confusion_matrix_wczytywanie_modelu_test.png')  # Saving the confusion matrix for test data as an image
+    plt.savefig('Warsztaty-badawcze/conf_matrixes/confusion_matrix_random_testB.png')  # Saving the confusion matrix for test data as an image
     plt.close()  # Closing the plot to release memory
 
 def perform_epoch(mil_model, dataloader, optimizer, loss_function):
@@ -170,7 +171,7 @@ def testing(mil_model, dataloader, loss_function):
         slides_labels_cuda = slides_labels.cuda()
 
         #optimizer.zero_grad()
-        predictions = mil_model(data, locations)
+        predictions = mil_model(data, locations, False)
 
         loss = loss_function(predictions, slides_labels_cuda)
         #loss.backward()
@@ -218,7 +219,7 @@ def main(hyper_parameters):
     dataset_test = Dataset(hyper_parameters['slide_parent_folder_test'], hyper_parameters['slide_labels_filepath_test'],
                       hyper_parameters['n_tiles_per_wsi'])
     n_classes = dataset_test.n_classes
-    dataloader_test = get_dataloader(dataset_test, hyper_parameters['batch_size'], True, hyper_parameters['j'])
+    dataloader_test = get_dataloader(dataset_test, hyper_parameters['batch_size'], False, hyper_parameters['j'])
     print('  done')
 
 
@@ -252,7 +253,7 @@ def main(hyper_parameters):
     bac_1_counter = 0
 
     # tutaj dajcie false, jeżeli chcecie tylko przetestować zapisany model
-    training = True
+    training = False
 
     if (training):
         print('Starting training...')
@@ -274,9 +275,7 @@ def main(hyper_parameters):
 
         print("Ground truths: ", ground_truths)
         print("Predicted classes: ", predicted_classes)
-    
-
-    print('---training  done---')
+        print('---training  done---')
     # Loop through all epochs
     
 
@@ -293,12 +292,17 @@ def main(hyper_parameters):
 
 
     # Zapisywanie ramki z danymi do wykresów
-    csv_path = 'Warsztaty-badawcze/train_epochs_with_recall.csv'
-    epoch_df.to_csv(csv_path, index=False)
-    print(f"Epoch data saved to {csv_path}")
+    if (training):
+      csv_path = 'Warsztaty-badawcze/train_epochs_with_recall_random_testB.csv'
+      epoch_df.to_csv(csv_path, index=False)
+      print(f"Epoch data saved to {csv_path}")
+
+    if not (training):
+      ground_truths=[]
+      predicted_classes=[]
 
     print("Making confusion matrix")
-    make_confusion_matrix(ground_truths, predicted_classes, ground_truths_test, predicted_classes_test)
+    make_confusion_matrix(training, ground_truths, predicted_classes, ground_truths_test, predicted_classes_test)
 
 
 
