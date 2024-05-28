@@ -219,7 +219,7 @@ def get_two_layers_sparse_cnn(input_n_channels: int, n_out_channels_conv1: int, 
         sparseconvnet.ReLU(),
         SparseAdaptiveAvgPool(1),
     )
-
+# git
 
 def instantiate_sparseconvmil(tile_embedder_resnet_architecture, tile_embedder_pretrained, n_out_channels_conv1,
                               n_out_channels_conv2, filter_width_conv1, filter_width_conv2, sparse_map_downsample,

@@ -15,7 +15,7 @@ def pil_loader(path):
         img = Image.open(f)
         return img.convert('RGB')
 
-
+# after
 class Dataset(torch.utils.data.dataset.Dataset):
     """
     Pre-fetch all tiles files from all slides, as well as slides labels.

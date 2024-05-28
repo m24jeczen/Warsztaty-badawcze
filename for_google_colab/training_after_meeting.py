@@ -252,7 +252,7 @@ def main(hyper_parameters):
     optimizer = torch.optim.Adam(sparseconvmil_model.parameters(), hyper_parameters['lr'],
                                  weight_decay=hyper_parameters['reg'])
     loss_function = torch.nn.CrossEntropyLoss()
-
+# git
     print('Parsing arguments...')
     
     start_epoch = 0
