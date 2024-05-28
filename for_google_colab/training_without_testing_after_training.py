@@ -216,7 +216,7 @@ def load_model(model, optimizer, path):
     model.load_state_dict(checkpoint['model_state_dict'])
     optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
     epoch = checkpoint['epoch']
-    model.eval()
+    #model.eval()
     print(f"Model loaded from {path}, resuming from epoch {epoch}")
     return epoch, model
 
