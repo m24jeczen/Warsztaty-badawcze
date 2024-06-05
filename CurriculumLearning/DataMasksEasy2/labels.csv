@@ -1,0 +1,11 @@
+labels.csv,malignant
+ytma12_010804_malignant1_ccd,malignant
+ytma49_042003_benign3_ccd,benign
+ytma49_042003_malignant2_ccd,malignant
+ytma49_042203_benign1_ccd,benign
+ytma49_042203_benign2_ccd,benign
+ytma49_042203_malignant1_ccd,malignant
+ytma49_072303_benign1_ccd,benign
+ytma49_072303_malignant2_ccd,malignant
+ytma49_111003_malignant1_ccd,malignant
+ytma55_030603_benign2_ccd,benign
