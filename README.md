@@ -28,10 +28,10 @@ The second part of the project remains without description for now and will be c
 In the next part of the project, we focus on developing strategies to improve the effectiveness of the model. We will base our research on 3 hypotheses:  
 1. Areas marked with a mask facilitate the model in classifying histopathological images. (Karolina & Zosia)  
 2. Areas containing background hinder the model in classifying histopathological images. (Zosia & Karolina)  
-3. **Curriculum Learning**: Improves the efficiency/results of the model. (Magda & Ola)
+3. **Curriculum Learning**: Improves the efficiency/results of the model. (Magda)
 
    
-    Three variants will be tested, dividing into difficulty levels based on **masks** and **background** (depending on the earlier findings) and a **classical approach** based on the confidence of a pretrained model.
+    Three variants will be tested, dividing into difficulty levels based on **masks** and **background** (depending on the earlier findings) 
 
 ## Authors:
 [Magdalena Jeczeń](https://github.com/m24jeczen)  
